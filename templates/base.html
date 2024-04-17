@@ -13,7 +13,7 @@
     <a href="{% url 'products:list' %}">청순 수연</a>
 
     {% if user.is_authenticated %}
-        <div>이거{{ user.username }}아님</div>
+        <a href="{% url "accounts:profile" user.id %}">이거{{ user.username }}아님</a>
         <form action="{% url 'accounts:logout' %}" method="POST">
             {% csrf_token %}
             <button>로그아웃</button>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block  content %}
+    <h1>{{ profile_user.username}}어서와라 너의 프로필이다!</h1>
+    <p>가입일 : {{ profile_user.date_joined}}</p>
+    <p>팔로잉 : {{ profile_user.followers.count }}
+
+    <form action="{% url "accounts:follow" profile_user.id %}" method="POST">
+        {% csrf_token %}
+        {% if request.user in profile_user.followers.all %}
+            <button>팔로우 해제</button>
+        {% else %}
+            <button>팔로우</button>
+        {% endif %}
+    </form>
+
+    <h2>등록 물건</h2>
+    <ul>
+        {% for choose_product in profile_user.product_set.all %}
+        <li>
+            <a href="{% url "products:detail" choose_product.id %}">
+                {{ choose_product.id}}. {{ choose_product.tittle }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+    
+
+    <h2>찜 목록</h2>
+    <ul>
+        {% for choose_product in profile_user.choose_products.all %}
+        <li>
+            <a href="{% url "products:detail" choose_product.id %}">
+                {{ choose_product.id}}. {{ choose_product.tittle }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock content %}

@@ -5,6 +5,7 @@ from products.models import Product
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 def list_view(request):
     products = Product.objects.all()
@@ -47,3 +48,15 @@ def delete_view(request, product_id):
         return redirect("products:detail", product_id=product_id)
     product.delete()
     return redirect("products:list")
+
+
+@login_required
+@require_POST
+def choose_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    user: User = request.user
+    if user.choose_products.filter(id=product_id).exists():
+        user.choose_products.remove(product)
+    else:
+        user.choose_products.add(product)
+    return redirect('products:list')
