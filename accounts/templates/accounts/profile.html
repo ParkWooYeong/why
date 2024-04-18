@@ -2,11 +2,12 @@
 
 
 {% block  content %}
-    <h2>{{ profile_user.username}}어서와라 너의 프로필이다!</h2>
-    <p>가입일 : {{ profile_user.date_joined}}</p>
-    <p>팔로잉 : {{ profile_user.followers.count }}
+    <h2 style="color: rgb(255, 104, 104);">{{ profile_user.username }}어서와라 너의 프로필이다!</h2>
 
-    <form action="{% url "accounts:follow" profile_user.id %}" method="POST">
+    <p style="color: rgb(255, 214, 125);">가입일 : {{ profile_user.date_joined}}</p>
+    <p style="color: rgb(255, 243, 138);"> 팔로잉 : {{ profile_user.followers.count }}
+
+    <form action="{% url 'accounts:follow' profile_user.id %}" method="POST">
         {% csrf_token %}
         {% if request.user in profile_user.followers.all %}
             <button>팔로우 해제</button>
@@ -15,11 +16,11 @@
         {% endif %}
     </form>
 
-    <h3>등록 물건</h3>
+    <h3 style="color: rgb(220, 113, 235);">등록 물건</h3>
     <ul>
         {% for choose_product in profile_user.product_set.all %}
         <li>
-            <a href="{% url "products:detail" choose_product.id %}">
+            <a href="{% url 'products:detail' choose_product.id %}" style="color: rgb(84, 253, 197);">
                 {{ choose_product.id}}. {{ choose_product.tittle }}
             </a>
         </li>
@@ -27,11 +28,11 @@
     </ul>
     
 
-    <h2>찜 목록</h2>
+    <h2 style="color: rgb(220, 113, 235);">찜 목록</h2>
     <ul>
         {% for choose_product in profile_user.choose_products.all %}
         <li>
-            <a href="{% url "products:detail" choose_product.id %}">
+            <a href="{% url 'products:detail' choose_product.id %}" style="color: rgb(84, 253, 197);">
                 {{ choose_product.id}}. {{ choose_product.tittle }}
             </a>
         </li>
