@@ -4,8 +4,9 @@
 
 {% block content %}
     <a href="{% url 'products:create' %}">글 작성</a>
-        <br>
+    <br>
     {% for product in products %}
+    <br>
         <div>
             <a href="{% url 'products:detail' product.id %}">
                 <div>{{ product.id }}. {{ product.title }}</div>
@@ -14,11 +15,10 @@
             <form action="{% url "products:choose" product.id %}"method ='POST'>
                 {% csrf_token %}
                 <button>
-                    
                     {% if user in product.choose_users.all %}
-                        찜풀기
+                        찜풀기<br>
                     {% else %}
-                        찜하기
+                        찜하기<br>
                     {% endif %}
                 </button>
             </form>

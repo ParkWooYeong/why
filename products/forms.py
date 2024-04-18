@@ -5,6 +5,12 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['title', 'content', 'price']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '너의 이름'}),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': '설명'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '가격'})
+        }
+        
 
 
     def save(self, author):

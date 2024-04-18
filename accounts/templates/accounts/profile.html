@@ -2,7 +2,7 @@
 
 
 {% block  content %}
-    <h1>{{ profile_user.username}}어서와라 너의 프로필이다!</h1>
+    <h2>{{ profile_user.username}}어서와라 너의 프로필이다!</h2>
     <p>가입일 : {{ profile_user.date_joined}}</p>
     <p>팔로잉 : {{ profile_user.followers.count }}
 
@@ -15,7 +15,7 @@
         {% endif %}
     </form>
 
-    <h2>등록 물건</h2>
+    <h3>등록 물건</h3>
     <ul>
         {% for choose_product in profile_user.product_set.all %}
         <li>
