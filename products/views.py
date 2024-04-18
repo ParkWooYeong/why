@@ -32,17 +32,17 @@ def detail_view(request,product_id):
 def update_view(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     
-    # 제품의 작성자가 현재 요청을 한 사용자와 다를 경우 제품 상세 페이지로 리다이렉트
+    
     if product.author != request.user:
         return redirect("products:detail", product_id=product_id)
 
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
-            updated_product = form.save(commit=False)  # 데이터베이스에 아직 저장하지 않음
-            updated_product.author = request.user      # author 필드를 현재 사용자로 설정
-            updated_product.save()                     # 변경 사항을 데이터베이스에 저장
-            return redirect("products:list")  # 목록 페이지로 리다이렉트
+            updated_product = form.save(commit=False)  
+            updated_product.author = request.user      
+            updated_product.save()               
+            return redirect("products:list")
     else:
         form = ProductForm(instance=product)
 
