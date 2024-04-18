@@ -2,9 +2,9 @@
 
 
 {% block content %}
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-    <button>작성하기</button>
+    <button>작성하기</button><br>
     </form>
 {% endblock content %}

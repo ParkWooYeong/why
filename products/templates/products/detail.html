@@ -2,6 +2,11 @@
 {% load humanize %}
 
 {% block content %}
+
+{% if article.image %}
+		<img src="{{ article.image.url }}">
+{% endif %}	
+
    <h1>{{ product.title }}</h1> 
    <p>{{ product.price|intcomma }}원</p>
    <div>{{ product.content }}</div>
@@ -9,6 +14,9 @@
    <a href="{% url 'products:update' product.id %}">수정</a>
    <form action="{% url 'products:delete' product.id %}", method="POST">
       {% csrf_token %}
-      <button>삭제</button>
+      <button type="submit">삭제</button>
+   {% if product.image %}
+   <img src="{{ product.image.url }}">
+   {% endif %}
    </form>
 {% endblock content %}

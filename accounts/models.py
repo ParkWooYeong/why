@@ -6,4 +6,3 @@ class User(AbstractUser):
     choose_products = models.ManyToManyField('products.Product', related_name='choose_users')
     followers = models.ManyToManyField('accounts.User', related_name='followings')
     
-    pass

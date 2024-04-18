@@ -4,7 +4,7 @@ from products.models import Product
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['title', 'content', 'price']
+        fields = ['title', 'content', 'price', 'image']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '너의 이름'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': '설명'}),
@@ -13,10 +13,11 @@ class ProductForm(forms.ModelForm):
         
 
 
-    def save(self, author):
-        product_instance = super().save(commit=False)
-        product_instance.author = author
-        product_instance.save()
-        return product_instance
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        
+        if commit:
+            instance.save()
+        return instance
         
 

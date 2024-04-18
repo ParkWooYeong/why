@@ -12,7 +12,7 @@
                 <div>{{ product.id }}. {{ product.title }}</div>
                 <div>{{ product.price|intcomma }}</div>
             </a>
-            <form action="{% url "products:choose" product.id %}"method ='POST'>
+            <form action="{% url 'products:choose' product.id %}"method ='POST'>
                 {% csrf_token %}
                 <button>
                     {% if user in product.choose_users.all %}

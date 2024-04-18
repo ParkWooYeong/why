@@ -16,7 +16,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             return redirect(request.GET.get('next') or 'products:list')
-        messages.error(request,'올바르지 않은 사용자 정보입니다.')
+        messages.error(request,'이게 맞을까요?')
     return render(request,'accounts/login.html')
 
 @require_POST

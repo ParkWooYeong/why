@@ -6,4 +6,4 @@ class Product(models.Model):
     content = models.TextField()
     price = models.PositiveIntegerField()
     author = models.ForeignKey('accounts.User', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="images/", blank=True, null=True)
+    image = models.ImageField(upload_to='products/', blank=True, null=True)
