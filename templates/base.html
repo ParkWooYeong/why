@@ -9,26 +9,41 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
         body {
-            background-image: url(https://blog.kakaocdn.net/dn/68d6v/btqDSiVLaY6/UffhOKyQbKkdaqkloLZFlk/img.gif);
+            background-image: url(https://cdn.pixabay.com/photo/2018/07/13/10/20/kittens-3535404_640.jpg);
             background-size: cover;
             
         }
         .login-button {
             margin-right: 20px;
+            margin-left: 20px;
+            background-color: rgb(122, 135, 255);
+            border:none;
         }
-        
+        .nav-links {
+            background-color: rgb(122, 135, 255);
+            border-radius: 8px;
+            padding: 6px 10px;
+            margin-right: 20px;
+            margin-left: 20px;
+            color: rgb(255, 255, 255);
+        }
+        .btn-secondary{
+            background-color: rgb(253, 96, 96);
+            border:none;
+        }
     </style>
     {% block head %}{% endblock head %}
 </head>
 <body>
     <div class="container mt-5">
         <h2 class="mb-3">
-            <p class="text-light">안녕 클레오 파트라 세상에서 제일가는 포테이토칩</p>
+            <p class="text-light">집에 가고 싶어요</p>
         </h2>
         <nav class="nav bg-dark p-1 rounded">
-            <a class="nav-link" href="{% url 'products:list' %}" style="color: plum; background-color: lightgoldenrodyellow; border-radius: 8px; padding: 7px 10px; ">청순 수연</a>
+            <a class="nav-link" href="{% url 'products:list' %}" style="background-color: lightgoldenrodyellow; color: rgb(247, 0, 255); border-radius: 8px;
+            padding: 7px 10px; ">청순 수연</a>
             {% if user.is_authenticated %}
-                <a class="nav-link" href="{% url 'accounts:profile' user.id %}" >{{ user.username }}</a>
+                <a class="nav-links" href="{% url 'accounts:profile' user.id %}">{{ user.username }}</a>
                 <form class="d-flex align-items-center" action="{% url 'accounts:logout' %}" method="POST">
                     {% csrf_token %}
                     <button class="btn btn-danger">로그아웃</button>

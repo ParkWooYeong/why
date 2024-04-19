@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
-{% load humanize %}
+{% load humanize static %}
 
 
 {% block content %}
-    <a href="{% url 'products:create' %}">글 작성</a>
+    <a href="{% url 'products:create' %}" style="color: rgb(255, 255, 255);">글 작성</a>
     <br>
     {% for product in products %}
     <br>
         <div>
             <a href="{% url 'products:detail' product.id %}">
-                <div>{{ product.id }}. {{ product.title }}</div>
-                <div>{{ product.price|intcomma }}</div>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.title }}" style="width: 170px; height: auto;">
+                {% endif %}
+                <div style="color: rgb(253, 107, 241);">{{ product.id }}. {{ product.title }}</div>
+                <div style="color: lightgreen;">{{ product.price|intcomma }}</div>
             </a>
             <form action="{% url 'products:choose' product.id %}"method ='POST'>
                 {% csrf_token %}
-                <button>
+                <button style="background-color: lightgoldenrodyellow;">
                     {% if user in product.choose_users.all %}
                         찜풀기<br>
                     {% else %}

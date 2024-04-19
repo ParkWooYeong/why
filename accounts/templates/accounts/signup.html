@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 
 {% block  content %}
-    <h1>signup</h1>
+    <h1 style="color: white;">signup</h1>
+    <style>
+        .highlight {
+            color: blue; /* 글자 색상을 파란색으로 설정 */
+        }
+        .form-label {
+            color: white; /* 폼 라벨의 글자 색상을 녹색으로 설정 */
+        }
+    </style>
     <form action="" method="POST">
         {% csrf_token %}
-        {{ form }}
+        <label class="form-label">{{ form }}</label>
         <button>로그인</button>
 
     </form>
