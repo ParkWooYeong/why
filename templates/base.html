@@ -25,7 +25,7 @@
             padding: 6px 10px;
             margin-right: 20px;
             margin-left: 20px;
-            color: rgb(255, 255, 255);
+            color: rgb(65, 56, 65);
         }
         .btn-secondary{
             background-color: rgb(253, 96, 96);
@@ -39,9 +39,9 @@
         <h2 class="mb-3">
             <p class="text-light">집에 가고 싶어요</p>
         </h2>
-        <nav class="nav bg-dark p-1 rounded">
+        <nav class="nav p-1 rounded">
             <a class="nav-link" href="{% url 'products:list' %}" style="background-color: lightgoldenrodyellow; color: rgb(247, 0, 255); border-radius: 8px;
-            padding: 7px 10px; ">청순 수연</a>
+            padding: 7px 10px; ">홈</a>
             {% if user.is_authenticated %}
                 <a class="nav-links" href="{% url 'accounts:profile' user.id %}">{{ user.username }}</a>
                 <form class="d-flex align-items-center" action="{% url 'accounts:logout' %}" method="POST">
